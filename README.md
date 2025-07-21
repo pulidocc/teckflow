@@ -1,62 +1,97 @@
-# TeckFlow Project
+ TeckFlow - Gestor de Correspondencia
 
-This is a Next.js application built with Firebase Studio. It's designed to process, summarize, and store communications using AI.
+TeckFlow es una aplicación web moderna y completa construida con Next.js que te permite gestionar tu correspondencia de manera eficiente y visual. Registra, clasifica y sigue el estado de tus comunicaciones a través de múltiples vistas, incluyendo una tabla detallada, una galería visual y un tablero Kanban interactivo.
 
-## Getting Started
+![Captura de pantalla de TeckFlow](https://placehold.co/800x450.png?text=TeckFlow+App+Screenshot)
 
-1.  **Install dependencies:**
+## ✨ Características Principales
+
+- **CRUD Completo:** Crea, lee, actualiza y elimina registros de correspondencia con facilidad.
+- **Múltiples Vistas:** Visualiza tus datos en el formato que prefieras:
+    - **Vista de Tabla:** Para un análisis detallado con ordenamiento y filtrado.
+    - **Vista de Galería:** Para una visualización rápida y atractiva de cada registro.
+    - **Vista de Tablero Kanban:** Organiza tu flujo de trabajo arrastrando y soltando tarjetas entre estados (`Borrador`, `Enviado`, `Recibido`).
+- **Filtrado y Búsqueda:** Filtra la correspondencia por término de búsqueda y por rango de fechas.
+- **Exportación de Datos:** Exporta tus registros a formatos CSV y SQL.
+- **Interfaz Multilingüe:** Soporte para Inglés y Español.
+- **Tema Claro y Oscuro:** Cambia entre modos de visualización para adaptarse a tus preferencias.
+- **Diseño Responsivo:** Totalmente funcional en dispositivos de escritorio y móviles.
+- **Backend Serverless:** Utiliza Firebase (Firestore) como base de datos en tiempo real.
+
+## 🚀 Pila Tecnológica
+
+- **Framework:** [Next.js](https://nextjs.org/) (con App Router y Server Actions)
+- **Lenguaje:** [TypeScript](https://www.typescriptlang.org/)
+- **UI:** [React](https://reactjs.org/)
+- **Componentes UI:** [Shadcn/ui](https://ui.shadcn.com/)
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com/)
+- **Base de Datos:** [Firebase Firestore](https://firebase.google.com/docs/firestore)
+- **Formularios:** [React Hook Form](https://react-hook-form.com/) y [Zod](https://zod.dev/) para validación.
+- **Arrastrar y Soltar:** [React Beautiful DnD](https://github.com/atlassian/react-beautiful-dnd)
+- **Iconos:** [Lucide React](https://lucide.dev/)
+
+## 🛠️ Cómo Empezar
+
+Sigue estos pasos para levantar el proyecto en tu entorno local.
+
+### Prerrequisitos
+
+- [Node.js](https://nodejs.org/en/) (versión 18.x o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+
+### 1. Configuración de Firebase
+
+1.  Ve a la [Consola de Firebase](https://console.firebase.google.com/).
+2.  Crea un nuevo proyecto.
+3.  Crea una nueva aplicación web y copia las credenciales de configuración.
+4.  Ve a **Firestore Database** y crea una base de datos. Comienza en modo de producción.
+5.  En la pestaña **Reglas** de Firestore, actualiza las reglas para permitir lecturas y escrituras (para desarrollo):
+    ```
+    rules_version = '2';
+    service cloud.firestore {
+      match /databases/{database}/documents {
+        match /{document=**} {
+          allow read, write: if true; // ¡CUIDADO! Solo para desarrollo.
+        }
+      }
+    }
+    ```
+6.  Crea una colección llamada `correspondence`.
+
+### 2. Instalación Local
+
+1.  Clona el repositorio:
+    ```bash
+    git clone https://github.com/tu-usuario/teckflow.git
+    cd teckflow
+    ```
+
+2.  Crea un archivo `.env.local` en la raíz del proyecto y añade las credenciales de Firebase que copiaste:
+    ```env
+    NEXT_PUBLIC_FIREBASE_API_KEY=AIza...
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+    NEXT_PUBLIC_FIREBASE_APP_ID=...
+    ```
+
+3.  Instala las dependencias:
     ```bash
     npm install
     ```
 
-2.  **Set up environment variables:**
-    Create a `.env` file in the root of the project and add your API keys:
-    ```env
-    # Your Google AI API Key for Genkit
-    GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
-    
-    # Your Firebase project configuration
-    NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_FIREBASE_STORAGE_BUCKET
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=YOUR_FIREBASE_MESSAGING_SENDER_ID
-    NEXT_PUBLIC_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
-    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_FIREBASE_MEASUREMENT_ID
-    ```
-
-3.  **Run the development server:**
+4.  Ejecuta el servidor de desarrollo:
     ```bash
     npm run dev
     ```
 
-Open [http://localhost:9002](http://localhost:9002) with your browser to see the result.
+¡Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en funcionamiento!
 
-## Features
+## 🤝 Contribuciones
 
-- **AI-Powered Summarization**: Upload documents (PDF, JPG, PNG) or paste text to get an AI-generated summary, key points, action items, and more.
-- **Database Storage**: Each processed communication is saved as a record in Firebase Firestore.
-- **Record Viewing**: A dedicated "Records" page displays all saved communications in a sortable, filterable table.
-- **Data Export**: Export your records to CSV, XLSX, or SQL formats.
-- **Date Filtering**: Filter records by a specific date or a date range.
-- **Multi-language Support**: Switch between English and Spanish.
-- **Responsive Design**: The application is designed to work on desktop, tablet, and mobile devices.
-- **Light/Dark Mode**: Toggle between light and dark themes.
+Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, por favor haz un fork del repositorio y crea un Pull Request.
 
-## Tech Stack
+## 📄 Licencia
 
-- **Framework**: Next.js (App Router)
-- **AI**: Google Gemini via Genkit
-- **Database**: Firebase Firestore
-- **UI**: React, TypeScript, ShadCN UI, Tailwind CSS
-- **Styling**: Tailwind CSS
-- **Form Handling**: React Hook Form with Zod for validation
-- **Internationalization (i18n)**: Custom context-based solution
-
-## Firebase Setup
-
-1.  Create a project on the [Firebase Console](https://console.firebase.google.com/).
-2.  In your project, go to **Project settings** > **General**.
-3.  Under "Your apps", click the web icon (`</>`) to add a new web app.
-4.  Register your app and you will be provided with a `firebaseConfig` object. Copy these keys into your `.env` file as shown above.
-5.  Go to **Firestore Database** in the left menu, create a database, and start in **test mode** for initial development (this allows open read/write access). For production, you will need to [secure your data with security rules](https://firebase.google.com/docs/firestore/security/get-started).
+Este proyecto está bajo la Licencia MIT.
