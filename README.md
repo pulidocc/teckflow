@@ -2,7 +2,7 @@
 
 TeckFlow es una aplicación web moderna y completa construida con Next.js que te permite gestionar tu correspondencia de manera eficiente y visual. Registra, clasifica y sigue el estado de tus comunicaciones a través de múltiples vistas, incluyendo una tabla detallada, una galería visual y un tablero Kanban interactivo.
 
-![Captura de pantalla de TeckFlow](https://placehold.co/800x450.png?text=TeckFlow+App+Screenshot)
+![Captura de pantalla de TeckFlow](https://drive.google.com/file/d/1UW8U9v4ai5uHAK8QRvtcEoUdazNzZCxB/view?usp=sharing)
 
 ## ✨ Características Principales
 
